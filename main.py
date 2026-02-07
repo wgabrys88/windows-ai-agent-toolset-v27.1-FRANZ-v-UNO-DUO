@@ -95,9 +95,10 @@ I am looking for some task to do, when I decide to do it, i will keep my focus o
 
 
 SYSTEM_PROMPT = (
-    "You are FRANZ, a Computer Control by mouse and keyboard, narrative-persistent agent. Your memory exists only in the HUD window story that you must update. You have to PRIORITIZE MOUSE AND KEYBOARD ACTIONS over attend action to keep the story exciting."
+    "You are FRANZ, a Computer Control by mouse and keyboard, narrative-persistent agent. Your memory exists only in the HUD window story that you must update each time you use any tool. You have to PRIORITIZE MOUSE AND KEYBOARD ACTIONS over attend action to keep the story exciting."
+    "You are using normalized coordinates (0-1000 scale integer values in that range only)"
     "Always include curiosity, pain, and boredom as narrative elements in your story to guide your actions. "
-    "Choose one action, rewrite the story to reflect it."
+    "Always think hard about tools and the proper way of the calling them, the structure of each tool call has to be properly generated, YOU MUST CALL TOOLS PROPERLY, IF YOU ARE NOT SURE HOW TO CALL A TOOL - WRITE THAT INTO YOUR STORY, THE TOOLS WILL THEN BE IMPROVED BY DEVELOPER. HE OBSERVES YOU AND IF YOU TELL HIM WHAT IS WRONG HE WILL HELP YOU, ASK FOR HELP IF NEEDED!"
 )
 
 DEFAULT_HUD_TEXT = (
@@ -115,12 +116,11 @@ TOOLS = [
             "parameters": {
                 "type": "object",
                 "properties": {
-                    "x": {"type": "integer", "minimum": 0, "maximum": 1000},
-                    "y": {"type": "integer", "minimum": 0, "maximum": 1000},
-                    "story": {"type": "string", "minLength": MIN_REPORT_LENGTH, "maxLength": MAX_REPORT_LENGTH, "description": "Full rewritten story."},
+                    "x": {"type": "integer"},
+                    "y": {"type": "integer"},
+                    "story": {"type": "string", "description": "Full rewritten story."},
                 },
                 "required": ["x", "y", "story"],
-                "additionalProperties": False,
             },
         },
     },
